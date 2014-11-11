@@ -19,7 +19,8 @@ void ColorSlider::setNextOverlay(Overlay *overlay)
 
 void ColorSlider::setPercent(float p)
 {
-    drawPercent = p;
+    drawPercent = std::max(p, 0.f);
+    drawPercent = std::min(p, 100.f);
     update();
 }
 
@@ -82,9 +83,8 @@ bool ColorSlider::isValidPressPos(const QPoint &p)
 {
     float error = p.x();
     error = fabs(error - drawPercent * width());
-    error /= width();
 
-    if (error < 0.02) {
+    if (error < 8) {
         return true;
     }
     return false;
