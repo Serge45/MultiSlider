@@ -24,18 +24,23 @@ void MultiSlider::resizeEvent(QResizeEvent *event)
 
 void MultiSlider::initSliders()
 {
-    auto *slider = new ColorSlider(this);
+    auto *slider = new ColorSlider(this,
+                                   QColor(255, 0, 0, 128),
+                                   0);
     slider->setPercent(0.7);
     sliders.append(slider);
 
-    slider = new ColorSlider(this);
+    slider = new ColorSlider(this,
+                             QColor(0, 255, 0, 128),
+                             1);
+
     slider->setPercent(0.5);
-    slider->setDrawColor(QColor(0, 255, 0, 128));
     sliders.append(slider);
 
-    slider = new ColorSlider(this);
+    slider = new ColorSlider(this,
+                             QColor(0, 0, 255, 128),
+                             2);
     slider->setPercent(0.2);
-    slider->setDrawColor(QColor(0, 0, 255, 128));
     sliders.append(slider);
 
     for (int i = sliders.size() - 1; i > 0 ; --i) {

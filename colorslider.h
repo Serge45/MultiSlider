@@ -10,8 +10,13 @@ class QMouseEvent;
 class ColorSlider : public Overlay
 {
     Q_OBJECT
+
+    static int activeId;
+
 public:
-    explicit ColorSlider(QWidget *parent = 0, QColor color = QColor(255, 0, 0, 128));
+    explicit ColorSlider(QWidget *parent = 0,
+                         QColor color = QColor(255, 0, 0, 128),
+                         int wId = 0);
 
 public:
     void setNextOverlay(Overlay *overlay);
@@ -31,10 +36,13 @@ private:
 
 private:
     bool leftButtonPressed;
+    bool controllable;
     QPoint curPressPos;
     QColor drawColor;
+    QColor controllerColor;
     Overlay *nextOverlay;
     float drawPercent;
+    int id;
 };
 
 #endif // COLORSLIDER_H
